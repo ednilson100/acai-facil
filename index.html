@@ -1,1 +1,157 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Açaí Fácil</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f3f7;
+      color: #29202b;
+    }
+    header {
+      background: linear-gradient(135deg, #4c145d, #7d278c);
+      color: white;
+      text-align: center;
+      padding: 32px 18px;
+    }
+    header h1 { margin: 0; font-size: 34px; }
+    header p { margin: 10px 0 0; font-size: 17px; }
+    main { max-width: 620px; margin: auto; padding: 18px; }
+    .aviso {
+      background: #fff2c9;
+      border-left: 5px solid #eea900;
+      padding: 14px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 18px 0;
+      box-shadow: 0 3px 12px #00000018;
+    }
+    h2 { color: #5c176b; margin-top: 0; }
+    .preco {
+      font-size: 29px;
+      font-weight: bold;
+      color: #16803a;
+      margin: 12px 0;
+    }
+    .detalhe { color: #5c5c5c; line-height: 1.6; }
+    label { display: block; font-weight: bold; margin: 14px 0 6px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #bfb7c2;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    button, .botao {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 16px;
+      font-size: 17px;
+      font-weight: bold;
+      color: white;
+      background: #25D366;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+    .roxo { background: #651875; }
+    footer {
+      text-align: center;
+      color: #555;
+      padding: 22px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🫐 AÇAÍ FÁCIL</h1>
+    <p>Compro açaí no caroço e vendo polpa de qualidade</p>
+  </header>
+
+  <main>
+    <div class="aviso">
+      📍 Retirada no Centro de Esperantina - TO.<br>
+      No momento, não fazemos entrega.
+    </div>
+
+    <section class="card">
+      <h2>Polpa de Açaí Natural</h2>
+      <p class="detalhe">Pacote congelado de 1 kg, produzido com açaí selecionado.</p>
+      <div class="preco">R$ 20,00</div>
+      <label for="quantidade">Quantos pacotes de 1 kg você quer?</label>
+      <input id="quantidade" type="number" min="1" value="1">
+      <label for="nomeCompra">Seu nome</label>
+      <input id="nomeCompra" placeholder="Digite seu nome">
+      <label for="pagamento">Forma de pagamento</label>
+      <select id="pagamento">
+        <option>Pix</option>
+        <option>Dinheiro</option>
+        <option>Combinar no WhatsApp</option>
+      </select>
+      <button onclick="comprarPolpa()">Pedir pelo WhatsApp</button>
+    </section>
+
+    <section class="card">
+      <h2>Compro Açaí no Caroço</h2>
+      <p class="detalhe">Preço de referência: R$ 55,00 por lata. Envie sua oferta para confirmação.</p>
+      <label for="nomeVendedor">Seu nome</label>
+      <input id="nomeVendedor" placeholder="Digite seu nome">
+      <label for="latas">Quantidade de latas</label>
+      <input id="latas" type="number" min="1" placeholder="Exemplo: 10">
+      <label for="local">Bairro ou local do açaí</label>
+      <input id="local" placeholder="Exemplo: Centro">
+      <button class="roxo" onclick="venderAcai()">Quero vender meu açaí</button>
+    </section>
+
+    <section class="card">
+      <h2>Retirada e contato</h2>
+      <p class="detalhe">
+        Rua Padre Josimo, nº 2731<br>
+        Bairro Centro, Esperantina - TO<br>
+        Horário: combinar pelo WhatsApp
+      </p>
+      <a class="botao" href="https://wa.me/5563992458566" target="_blank">Falar no WhatsApp</a>
+    </section>
+  </main>
+
+  <footer>
+    Açaí Fácil<br>
+    Compra de açaí no caroço e venda de polpa de 1 kg.
+  </footer>
+
+  <script>
+    const numero = "5563992458566";
+
+    function comprarPolpa() {
+      const quantidade = document.getElementById("quantidade").value || 1;
+      const nome = document.getElementById("nomeCompra").value || "Não informado";
+      const pagamento = document.getElementById("pagamento").value;
+      const total = Number(quantidade) * 20;
+      const mensagem = `Olá! Meu nome é ${nome}. Quero pedir ${quantidade} pacote(s) de polpa de açaí de 1 kg. Total: R$ ${total.toFixed(2).replace(".", ",")}. Pagamento: ${pagamento}. Vou retirar na Rua Padre Josimo, nº 2731, Centro, Esperantina - TO.`;
+      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`, "_blank");
+    }
+
+    function venderAcai() {
+      const nome = document.getElementById("nomeVendedor").value || "Não informado";
+      const latas = document.getElementById("latas").value || "Não informado";
+      const local = document.getElementById("local").value || "Não informado";
+      const mensagem = `Olá! Meu nome é ${nome}. Quero vender açaí no caroço. Tenho ${latas} lata(s) disponíveis. Local: ${local}. Gostaria de confirmar a compra pelo Açaí Fácil.`;
+      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`, "_blank");
+    }
+  </script>
+</body>
+</html>
